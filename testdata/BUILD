@@ -757,6 +757,30 @@ java_image(
     runtime_deps = [":java_bin_as_lib"],
 )
 
+java_image(
+    name = "java_runfiles_image",
+    srcs = ["Runfiles.java"],
+    deps = [
+        "@bazel_tools//tools/runfiles:java-runfiles",
+    ],
+    main_class = "examples.images.Runfiles",
+)
+
+java_library(
+    name = "java_runfiles_as_lib",
+    srcs = ["Runfiles.java"],
+    data = ["foo"],
+    deps = [
+        "@bazel_tools//tools/runfiles:java-runfiles",
+    ],
+)
+
+java_image(
+    name = "java_runfiles_as_lib_image",
+    main_class = "examples.images.Runfiles",
+    runtime_deps = [":java_runfiles_as_lib"],
+)
+
 war_image(
     name = "war_image",
     srcs = ["Servlet.java"],
